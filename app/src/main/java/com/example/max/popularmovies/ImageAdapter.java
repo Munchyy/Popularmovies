@@ -10,6 +10,8 @@ import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
+
 /**
  * Custom adapter class for images in gridview
  */
@@ -18,14 +20,32 @@ public class ImageAdapter extends ArrayAdapter{
     private final String LOG_TAG = ImageAdapter.class.getSimpleName();
     private Context context;
     private LayoutInflater inflater;
-    private String[] imageUrls;
+    private ArrayList<String> imageUrls;
+    private String[] strArrayImageUrls;
 
-    public ImageAdapter(Context context, String[] imageUrls) {
+    public ImageAdapter(Context context, ArrayList<String> imageUrls) {
         super(context, R.layout.poster_image, imageUrls);
 
         this.context = context;
         this.imageUrls = imageUrls;
-        inflater = LayoutInflater.from(context);
+        strArrayImageUrls = this.imageUrls.toArray(new String[0]);
+        inflater = LayoutInflater.from(this.context);
+    }
+
+    /**
+     * @param newUrls
+     *
+     * Replaces the poster set with a new set of URL's
+     * Clears the adapter
+     * Adds the new set
+     * Notifies of changed data
+     */
+    public void changeUrls(ArrayList<String> newUrls){
+        this.imageUrls = newUrls;
+        this.strArrayImageUrls = this.imageUrls.toArray(new String[0]);
+        this.clear();
+        this.addAll(this.imageUrls);
+        //this.notifyDataSetChanged();
     }
 
     @Override
@@ -34,10 +54,12 @@ public class ImageAdapter extends ArrayAdapter{
             convertView = inflater.inflate(R.layout.poster_image,parent,false);
         }
 
-        if(context!=null && imageUrls!=null){
+        if(context!=null && strArrayImageUrls!=null){
+
+
             Picasso
                     .with(context)
-                    .load(imageUrls[position])
+                    .load(strArrayImageUrls[position])
                     .fit()
                     .into((ImageView) convertView);
 
@@ -47,4 +69,5 @@ public class ImageAdapter extends ArrayAdapter{
         }
         return null;
     }
+
 }
