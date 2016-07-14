@@ -2,6 +2,7 @@ package com.example.max.popularmovies;
 
 import android.content.Context;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -35,7 +36,6 @@ public class PosterFragment extends Fragment {
         /**
          * TODO: MAKE A URI BUILDER TO GET THE TMDB IMAGES AUTOMATICALLY
          * https://docs.google.com/document/d/1ZlN1fUsCSKuInLECcJkslIqvpKlP7jWL2TP9m6UiA6I/pub?embedded=true#h.cntdg23jy69n
-         * MY API KEY: ***REMOVED***
          */
         String[] urls = {
                 "https://image.tmdb.org/t/p/w185/kqjL17yufvn9OVLyXYpvtyrFfak.jpg",
@@ -66,6 +66,13 @@ public class PosterFragment extends Fragment {
         });
 
         return rootView;
+    }
+
+    public String[] getPosterURIs(){
+
+        final String BASE_URL = "";
+
+        return null;
     }
 
 
