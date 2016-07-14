@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Popular movies</string>
+
+    <string name="menu_item_settings">Settings</string>
+</resources>
